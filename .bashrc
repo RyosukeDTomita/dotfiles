@@ -117,13 +117,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
 #------------added by tomita------------
 PATH=$PATH":/home/tomita/bash"
-#PATH=$PATH":/home/tomita/bash/bash_security"
-#PATH=$PATH":/usr/local/lib/"
-#PATH=$PATH":/usr/lib/"
-#CDPATH=:/home/tomita/memo/
-
+CDPATH=:/home/tomita/memo/
 alias matrix='cmatrix -abs'
 alias rm='rm -iv'
 alias mv='mv -iv'
@@ -182,15 +179,42 @@ function rm() {
     command rm $@
 } # end function rm
 
+
+# command line edit mode vi
+set -o vi
+bind -f ~/.inputrc # enable ctrl p, ctrl n
+# show mode
+function update_prompt {
+  # get current mode
+  if bind -v | grep 'vi-insert' > /dev/null; then
+    mode="ins"
+  else
+    mode="nrm"
+  fi
+  # update_prompt
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]iceman@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[\033[01;33m\]('$mode')\[\033[00m\]\$ '
+}
+# set prompt command
+PROMPT_COMMAND=update_prompt
+# update_prompt
+update_prompt
+
+
 # convert caps ctrl
 setxkbmap -model jp106 -layout jp -option ctrl:nocaps
+
 
 # Ranger
 export VISUAL=vim;
 export EDITOR=vim;
 
+
 # tab completion
 source /home/tomita/bash/tabcompletion.bash conda /home/tomita/bash/option/conda_option
+
+# gh tab completion
+eval "$(gh completion -s bash)"
+
 
 # tor
 #export http_proxy=socks5://127.0.0.1:9050
@@ -202,21 +226,23 @@ source /home/tomita/bash/tabcompletion.bash conda /home/tomita/bash/option/conda
 #export FTP_PROXY=$http_proxy
 #export RSYNC_PROXY=$http_proxy
 
+
 # java
 export JAVA_HOME=/usr/lib/jvm/jdk-11.0.15/
+
 
 # aws
 complete -C '/usr/local/bin/aws_completer' aws
 alias as='aws sts get-caller-identity'
 
-# SSL decode
+
+# SSL decode for Wireshark
 export SSLKEYLOGFILE=/home/tomita/ssl-key.log
 
-# gh tab completion
-eval "$(gh completion -s bash)"
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
+
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -225,8 +251,10 @@ export NVM_DIR="$HOME/.nvm"
 # go lang
 export PATH=$PATH:/usr/local/go/bin
 
+
 # aqua
 export PATH="$(aqua root-dir)/bin:$PATH"
+
 
 # tmp
 alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_2019_5th-ed.pdf'
