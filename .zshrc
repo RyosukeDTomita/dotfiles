@@ -181,7 +181,7 @@ export SSLKEYLOGFILE=/home/tomita/ssl-key.log
 
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
+PATH=$PATH":$HOME/.rbenv/bin"
 
 
 # nvm
@@ -189,12 +189,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # go lang
-export PATH=$PATH:/usr/local/go/bin
+PATH=$PATH":/usr/local/go/bin"
 
 
 # aqua
-export PATH="$(aqua root-dir)/bin:$PATH"
+PATH=$PATH":$(aqua root-dir)/bin"
 
 
 # tmp
 alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_2019_5th-ed.pdf'
+
+
+# pyenv
+export PYENV_ROOT="~/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && PATH=$PATH":${PYENV_ROOT}/bin"
+eval "$(pyenv init -)"
