@@ -258,3 +258,9 @@ export PATH="$(aqua root-dir)/bin:$PATH"
 
 # tmp
 alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_2019_5th-ed.pdf'
+
+
+# pyenv
+export PYENV_ROOT="~/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && PATH=$PATH":${PYENV_ROOT}/bin"
+eval "$(pyenv init -)"

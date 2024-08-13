@@ -171,11 +171,6 @@ eval "$(gh completion -s zsh)"
 export JAVA_HOME=/usr/lib/jvm/jdk-11.0.15/
 
 
-# aws
-# complete -C '/usr/local/bin/aws_completer' aws # NOTE: completeはビルトインコマンドぽい
-alias as='aws sts get-caller-identity'
-
-
 # SSL decode for Wireshark
 export SSLKEYLOGFILE=/home/tomita/ssl-key.log
 
@@ -202,5 +197,15 @@ alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_201
 
 # pyenv
 export PYENV_ROOT="~/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && PATH=$PATH":${PYENV_ROOT}/bin"
-eval "$(pyenv init -)"
+if [[ -d $PYENV_ROOT/bin ]]; then
+  PATH=$PATH":$PYENV_ROOT/bin"
+  eval "$(pyenv init -)"
+fi
+
+
+# aws
+alias as='aws sts get-caller-identity'
+# NOTE: zsh cannot use complete directory.
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
