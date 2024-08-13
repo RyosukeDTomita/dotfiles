@@ -1,6 +1,6 @@
 #!/bin/bash
 ##########################################################################
-# Name: initialsettings.sh
+# Name: install.sh
 #
 # Description: This script is used to create symbolic links to the dotfiles
 #

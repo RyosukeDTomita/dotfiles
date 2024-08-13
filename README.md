@@ -40,8 +40,16 @@ git clone RyosukeDTomita/dotfiles.git
 
 ```shell
 cd dotfiles/
-chmod +x initialsettings.sh
-./initialsettings.sh
+chmod +x initall.sh
+./install.sh
 ```
+
+> [!NOTE]
+> Dev Containersで使用するinstall scriptはデフォルトで以下のファイルが実行される。
+> - install.sh
+> - install
+> - bootstrap.sh
+> - setup.sh
+> - setup
 
 ---
