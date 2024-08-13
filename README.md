@@ -52,4 +52,7 @@ chmod +x initall.sh
 > - setup.sh
 > - setup
 
+> [!NOTE]
+> Dev Containersかどうかを`REMOTE_CONTAINERS=true`の環境変数で識別している。参考: [GitHub issue](https://github.com/microsoft/vscode-remote-release/issues/3517)
+
 ---

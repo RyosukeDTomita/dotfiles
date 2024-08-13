@@ -2,18 +2,30 @@
 ##########################################################################
 # Name: install.sh
 #
-# Description: This script is used to create symbolic links to the dotfiles
+# Description: This script is used to create symbolic links to the dotfiles.
+# NOTE: dotfiles/ directory must be placed in the home directory.
 #
-# Usage: ./initialsettings.sh
+# Usage: ./install.sh
 #
 # Author: Ryosuke Tomita
 # Date: 2024/07/15
 ##########################################################################
-
 for f in $(ls -a ~/dotfiles | grep "^\.[a-zA-Z0-9]"); do
-  if [ -e ~/$f ] || [ "$f" == ".git" ]; then
+  if [ "${f}" == ".git" ]; then
     continue
   fi
-  echo $f
-  ln -s ~/dotfiles/$f ~/$f
+  if [ -e !~/${f} ]; then
+    ln -s ~/dotfiles/${f} ~/${f}
+    echo "=====CREATE SYMBOLIC LINKS ${HOME}/dotfiles/${f} --> ${HOME}/${f}====="
+  # NOTE: The environment variable `REMOTE_CONTAINERS` is true in Dev Containers.
+  elif [ "${REMOTE_CONTAINERS}" == "true" ]; then
+    echo "REMOTE_CONTAINERS IS ${REMOTE_CONTAINERS}, THEN OVERWRITE SYMBOLIC LINKS"
+    backup_dir=dotfiles_$(date +%Y%m%d)
+    if [ ! -d ${backup_dir} ]; then
+      mkdir ~/${backup_dir}
+    fi
+    cp ~/${f} ${backup_dir}
+    ln -sf ~/dotfiles/${f} ~/${f}
+    echo "=====CREATE SYMBOLIC LINKS ${HOME}/dotfiles/${f} --> ${HOME}/${f}====="
+  fi
 done
