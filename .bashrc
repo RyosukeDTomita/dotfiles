@@ -201,7 +201,9 @@ update_prompt
 
 
 # convert caps ctrl
-setxkbmap -model jp106 -layout jp -option ctrl:nocaps
+if type setxkbmap> /dev/null 2>&1; then
+  setxkbmap -model jp106 -layout jp -option ctrl:nocaps
+fi
 
 
 # Ranger
@@ -210,10 +212,13 @@ export EDITOR=vim;
 
 
 # tab completion
-source /home/tomita/bash/tabcompletion.bash conda /home/tomita/bash/option/conda_option
+#source /home/tomita/bash/tabcompletion.bash conda /home/tomita/bash/option/conda_option
+
 
 # gh tab completion
-eval "$(gh completion -s bash)"
+if type gh > /dev/null 2>&1; then
+  eval "$(gh completion -s bash)"
+fi
 
 
 # tor
@@ -263,4 +268,6 @@ alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_201
 # pyenv
 export PYENV_ROOT="~/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && PATH=$PATH":${PYENV_ROOT}/bin"
-eval "$(pyenv init -)"
+if pyenv gh > /dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
