@@ -144,7 +144,9 @@ zle -N zle-line-pre-redraw
 
 
 # convert caps ctrl
-setxkbmap -model jp106 -layout jp -option ctrl:nocaps
+if type setxkbmap > /dev/null 2>&1; then
+  setxkbmap -model jp106 -layout jp -option ctrl:nocaps
+fi
 
 
 # Ranger
@@ -153,7 +155,9 @@ export EDITOR=vim;
 
 
 # gh tab completion
-eval "$(gh completion -s zsh)"
+if type gh > /dev/null 2>&1; then
+  eval "$(gh completion -s zsh)"
+fi
 
 
 # tor
@@ -196,7 +200,7 @@ alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_201
 
 
 # pyenv
-export PYENV_ROOT="~/.pyenv"
+export PYENV_ROOT="$HOME/.pyenv"
 if [[ -d $PYENV_ROOT/bin ]]; then
   PATH=$PATH":$PYENV_ROOT/bin"
   eval "$(pyenv init -)"
