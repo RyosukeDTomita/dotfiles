@@ -242,7 +242,7 @@ alias as='aws sts get-caller-identity'
 
 
 # SSL decode for Wireshark
-export SSLKEYLOGFILE=/home/tomita/ssl-key.log
+# export SSLKEYLOGFILE=/home/tomita/ssl-key.log
 
 
 # rbenv
