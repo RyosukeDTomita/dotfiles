@@ -138,7 +138,9 @@ alias chrome='google-chrome-stable > /dev/null 2>&1 &'
 alias firefox='firefox > /dev/null 2>&1 &'
 alias discord='discord > /dev/null 2>&1 &'
 #alias vim='source /home/tomita/bash/vim'
-alias vim='nvim'
+if type vim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
 alias cd='cd '
 alias dl='/home/tomita/Downloads'
 alias gs='git status'
@@ -201,7 +203,7 @@ update_prompt
 
 
 # convert caps ctrl
-if type setxkbmap> /dev/null 2>&1; then
+if type setxkbmap > /dev/null 2>&1; then
   setxkbmap -model jp106 -layout jp -option ctrl:nocaps
 fi
 
