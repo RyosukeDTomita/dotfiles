@@ -9,6 +9,10 @@ set shellslash "Path delimiter setting, use'/'insted of \
 set ignorecase "ignore Uppercase and lowercase (set ic)
 set history=50 "The number of :command history
 set virtualedit=block "It enables cursor motion in no character zone
+set nrformats-=octal "ignore octal character
+set backspace=indent,eol,start "It enabales back space more wider area
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "memorize cursol position.
+
 "clipboard
 "NOTE: need to install xclip
 set clipboard+=unnamedplus "yunk can used for clipboard. This function is necessary xclip. xclip is able to install with apt.
@@ -25,15 +29,13 @@ set shiftwidth=2 "indentation operations
 set smartindent "auto indent
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
-"modeline
+"modeline https://qiita.com/koara-local/items/536248334edf288292fc
 set modeline
 set modelines=2 "number of lines to look for file's modeline settings
 
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "memorize cursol position.
-set nrformats-=octal
-set hidden "don't use decimal system 8 wheh we use number stated with 0
+"tmp
+set hidden "Using vim's functionality to edit multiple files
 set whichwrap=b,s,[,],<,> "cursor setting
-set backspace=indent,eol,start "It enabales back space more wider area
 set wildmenu
 
 "emacs key-binding
