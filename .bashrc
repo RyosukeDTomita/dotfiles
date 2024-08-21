@@ -125,7 +125,6 @@ alias matrix='cmatrix -abs'
 alias rm='rm -iv'
 alias mv='mv -iv'
 alias cp='cp -iv'
-alias open='xdg-open'
 alias screenshot='gnome-screenshot'
 alias lock="xdg-screensaver lock"
 alias lhS='ls -lhS'
@@ -160,6 +159,15 @@ alias unmount='fusermount -u'
 alias du='du -h'
 alias ping='ping -t 128'
 alias redmine='cd /usr/local/bin/redmine-4.2.8 && bundle exec rails server webrick -e production > /dev/null 2>&1 &'
+
+
+# WSL or Ubuntu desktop
+# NOTE: /proc/versionにmicrosoftが入っているかどうかでWSLか判定できる。
+if grep -q microsoft /proc/version; then
+  alias open='wsl-open'
+else
+  alias open='xdg-open'
+fi
 
 
 # rm -rf -i

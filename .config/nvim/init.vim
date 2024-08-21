@@ -14,8 +14,15 @@ set backspace=indent,eol,start "It enabales back space more wider area
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "memorize cursol position.
 
 "clipboard
-"NOTE: need to install xclip
-set clipboard+=unnamedplus "yunk can used for clipboard. This function is necessary xclip. xclip is able to install with apt.
+if system('grep -q Microsoft /proc/version') == 0
+  "WSL
+  set clipboard&
+  set clipboard^=unnamedplus
+else
+  "Ubuntu Desktop
+  "NOTE: need to install xclip
+  set clipboard+=unnamedplus "yunk can used for clipboard. This function is necessary xclip. xclip is able to install with apt.
+endif
 
 "color scheme
 syntax enable

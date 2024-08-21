@@ -20,6 +20,8 @@ setopt HIST_FIND_NO_DUPS
 # ignore blank line history
 setopt HIST_IGNORE_SPACE
 
+
+#
 PATH=$PATH":/home/tomita/bash"
 CDPATH=:/home/tomita/memo/ # cdのtab completionのsuggestに追加
 alias cd='cd ' # cdの後にエイリアスを使えるようにする設定
@@ -64,6 +66,14 @@ alias goldendict='goldendict > /dev/null 2>&1 &'
 alias veracrypt='veracrypt > /dev/null 2>&1 &'
 alias unmount='fusermount -u'
 alias redmine='cd /usr/local/bin/redmine-4.2.8 && bundle exec rails server webrick -e production > /dev/null 2>&1 &'
+
+
+# WSL or Ubuntu desktop
+# NOTE: /proc/versionにmicrosoftが入っているかどうかでWSLか判定できる。
+if grep -q microsoft /proc/version; then
+  alias open='wsl-open'
+else
+  alias open='xdg-open'
 
 
 # rm -rf -i
