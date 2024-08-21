@@ -14,7 +14,7 @@ set backspace=indent,eol,start "It enabales back space more wider area
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "memorize cursol position.
 
 "clipboard
-if system('grep -q Microsoft /proc/version') == 0
+if system('grep -q microsoft /proc/version') == 0
   "WSL
   set clipboard&
   set clipboard^=unnamedplus
@@ -24,10 +24,16 @@ else
   set clipboard+=unnamedplus "yunk can used for clipboard. This function is necessary xclip. xclip is able to install with apt.
 endif
 
-"color scheme
+"colorscheme settings
 syntax enable
-"colorscheme slate
-colorscheme default
+colorscheme slate
+"NOTE: fix background color become black error
+set termguicolors  "activate gui color
+"set background=dark  "
+highlight Normal ctermbg=NONE guibg=NONE  "setting the backgroud color to transparent.
+
+"color
+filetype plugin indent on
 
 "tab
 set tabstop=2 "display tab=2space
@@ -42,7 +48,7 @@ set modelines=2 "number of lines to look for file's modeline settings
 
 "tmp
 set hidden "Using vim's functionality to edit multiple files
-set whichwrap=b,s,[,],<,> "cursor setting
+set whichwrap=b,s,<,>,[,]
 set wildmenu
 
 "emacs key-binding
@@ -63,6 +69,24 @@ nnoremap s "_s
 
 
 "**********dein**********
+"install dein ~/.cache/dein/repos/github.com/Shougo/dein.vim
+let $CACHE = expand('~/.cache')
+if !($CACHE->isdirectory())
+  call mkdir($CACHE, 'p')
+endif
+if &runtimepath !~# '/dein.vim'
+  let s:dir = 'dein.vim'->fnamemodify(':p')
+  if !(s:dir->isdirectory())
+    let s:dir = $CACHE .. '/dein/repos/github.com/Shougo/dein.vim'
+    if !(s:dir->isdirectory())
+      execute '!git clone https://github.com/Shougo/dein.vim' s:dir
+    endif
+  endif
+  execute 'set runtimepath^='
+        \ .. s:dir->fnamemodify(':p')->substitute('[/\\]$', '', '')
+endif
+
+"install plugins from ~/.config/nvim/dein.toml
 if &compatible
   set nocompatible
 endif
@@ -82,10 +106,6 @@ if len(s:removed_plugins) > 0
   call map(s:removed_plugins, "delete(v:val, 'rf')")
   call dein#recache_runtimepath()
 endif
-
-filetype plugin indent on
-"syntax enable
-
 
 "##########plugin setting##########
 
@@ -110,3 +130,8 @@ set updatetime=100 "response faster
 "tpope/vim-commentary'
 "NOTE: comment out when gcc in normal mode
 nnoremap <C-/> gcc
+
+"deoplateとcoc.vimが相性が悪かったのでtabで補完候補を選ぶ設定をvimrcに追加した。
+inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
+let g:tex_flavor = 'latex'
