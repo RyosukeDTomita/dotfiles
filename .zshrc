@@ -21,7 +21,8 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
 
 PATH=$PATH":/home/tomita/bash"
-CDPATH=:/home/tomita/memo/
+CDPATH=:/home/tomita/memo/ # cdのtab completionのsuggestに追加
+alias cd='cd ' # cdの後にエイリアスを使えるようにする設定
 alias ls='ls --color=auto -F'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -31,26 +32,29 @@ alias rm='rm -iv'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias open='xdg-open'
-alias screenshot='gnome-screenshot'
-alias lock="xdg-screensaver lock"
 alias lhS='ls -lhS'
 alias lsl='clear && ls'
-alias upower='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-#alias dd='echo "dd is not available"'
+alias dd='echo "dd is not available"'
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
-alias chrome='google-chrome-stable > /dev/null 2>&1 &'
-alias firefox='firefox > /dev/null 2>&1 &'
-alias discord='discord > /dev/null 2>&1 &'
-#alias vim='source /home/tomita/bash/vim'
+alias du='du -h'
 if type vim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
-alias cd='cd '
-alias dl='/home/tomita/Downloads'
+alias xsel='xsel -bi'
+alias ipython='ipython3'
+alias ipython3='ipython3 --TerminalInteractiveShell.editing_mode=vi'
 alias gs='git status'
 alias gb='git branch'
-alias mkprg='mkprg.bash'
+
+# settings for ubuntu desktop
+alias screenshot='gnome-screenshot'
+alias lock="xdg-screensaver lock"
+alias upower='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+alias chrome='google-chrome-stable > /dev/null 2>&1 &'
+alias firefox='firefox > /dev/null 2>&1 &'
+alias discord='discord > /dev/null 2>&1 &'
+alias dl='/home/tomita/Downloads'
 alias fc='fc -e'
 alias winekd='wine ~/app/kindle-for-pc-1-17-44183.exe'
 alias vpngate='cd ~/app/vpngate-with-proxy && ./run tui && cd -'
@@ -58,12 +62,7 @@ alias torb='cd ~/app/tor_browser && ./start-tor-browser.desktop'
 alias vchanger='sox -d -d pitch -700 contrast 100 echo 0.8 0.88 6 0.4 '
 alias goldendict='goldendict > /dev/null 2>&1 &'
 alias veracrypt='veracrypt > /dev/null 2>&1 &'
-alias xsel='xsel -bi'
-alias ipython='ipython3'
-alias ipython3='ipython3 --TerminalInteractiveShell.editing_mode=vi'
 alias unmount='fusermount -u'
-alias du='du -h'
-alias ping='ping -t 128'
 alias redmine='cd /usr/local/bin/redmine-4.2.8 && bundle exec rails server webrick -e production > /dev/null 2>&1 &'
 
 
@@ -87,8 +86,8 @@ function rm() {
 } # end function rm
 
 
-# command line edit mode vi
-bindkey -v
+# settings for command line edit mode vi
+bindkey -v # bash set -o vi
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^[[A' up-line-or-search
@@ -107,7 +106,6 @@ BOLD='%B'
 PROMPT_INS="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[INS]${RESET}:${BLUE}%~${RESET}$ "
 PROMPT_NOR="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[NOR]${RESET}:${BLUE}%~${RESET}$ "
 PROMPT_VIS="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[VIS]${RESET}:${BLUE}%~${RESET}$ "
-
 
 function zle-line-pre-redraw {
     if [[ $REGION_ACTIVE -ne 0 ]]; then
@@ -151,15 +149,9 @@ if type setxkbmap > /dev/null 2>&1; then
 fi
 
 
-# Ranger
+# default editor
 export VISUAL=vim;
 export EDITOR=vim;
-
-
-# gh tab completion
-if type gh > /dev/null 2>&1; then
-  eval "$(gh completion -s zsh)"
-fi
 
 
 # tor
@@ -171,34 +163,6 @@ fi
 #export HTTPS_PROXY=$http_proxy
 #export FTP_PROXY=$http_proxy
 #export RSYNC_PROXY=$http_proxy
-
-
-# java
-export JAVA_HOME=/usr/lib/jvm/jdk-11.0.15/
-
-
-# SSL decode for Wireshark
-export SSLKEYLOGFILE=/home/tomita/ssl-key.log
-
-
-# rbenv
-PATH=$PATH":$HOME/.rbenv/bin"
-
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# go lang
-PATH=$PATH":/usr/local/go/bin"
-
-
-# aqua
-PATH=$PATH":$(aqua root-dir)/bin"
-
-
-# tmp
-alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_2019_5th-ed.pdf'
 
 
 # pyenv
@@ -215,3 +179,35 @@ alias as='aws sts get-caller-identity'
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
+
+
+# gh tab completion
+# NOTE: compinitと干渉するのでcompinitよりも下に書く。
+if type gh > /dev/null 2>&1; then
+  eval "$(gh completion -s zsh)"
+fi
+
+
+# SSL decode for Wireshark
+#export SSLKEYLOGFILE=/home/tomita/ssl-key.log
+
+
+#-----add PATH-----
+# java
+export JAVA_HOME=/usr/lib/jvm/jdk-11.0.15/
+
+
+# rbenv
+PATH=$PATH":$HOME/.rbenv/bin"
+
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# go lang
+PATH=$PATH":/usr/local/go/bin"
+
+
+# aqua
+PATH=$PATH":$(aqua root-dir)/bin"
