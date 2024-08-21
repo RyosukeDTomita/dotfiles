@@ -1,0 +1,175 @@
+{
+  "workbench.colorTheme": "Solarized Dark",
+  "editor.wordWrap": "on",
+  "editor.fontSize": 20,
+  "terminal.integrated.fontSize": 22,
+  "editor.minimap.enabled": false,
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#d3d3d3",
+    "terminalCursor.foreground": "#d3d3d3",
+    "terminal.background": "#032129",
+    "sideBar.background": "#032129"
+  },
+  // icons
+  "workbench.iconTheme": "material-icon-theme",
+
+  // gitlens
+  "gitlens.codeLens.enabled": false,
+
+  // markdown code style
+  "markdown-pdf.highlightStyle": "solarized-dark.css",
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.formatOnSave": true,
+  },
+  // 抑止設定
+  "markdownlint.config": {
+    "MD010": false, // タブ
+    "MD013": false // 長い行
+  },
+
+  // latex tools
+  "latex-workshop.latex.tools": [
+    {
+      "name": "ptex2pdf (uplatex)",
+      "command": "ptex2pdf",
+      "args": ["-interaction=nonstopmode", "-l", "-u", "%DOC%"]
+    },
+    {
+      "name": "uplatex",
+      "command": "uplatex",
+      "args": ["%DOC%"]
+    },
+    {
+      "name": "pbibtex (jp)",
+      "command": "pbibtex",
+      "args": ["%DOCFILE%"]
+    }
+  ],
+  // use tools. run only top recipes.
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "uplatex + ptex2pdf ",
+      "tools": ["uplatex", "ptex2pdf (uplatex)"]
+    },
+    {
+      "name": "ptex2pdf with pbibtex",
+      "tools": [
+        "uplatex",
+        "pbibtex (jp)",
+        "uplatex",
+        "uplatex",
+        "ptex2pdf (uplatex)"
+      ]
+    }
+  ],
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // vim
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "/home/tomita/.code_vimrc",
+  "editor.cursorStyle": "block-outline",
+  "editor.cursorBlinking": "solid",
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.replace": "block",
+  "vim.cursorStylePerMode.visual": "block",
+  "vim.cursorStylePerMode.visualblock": "block",
+  "vim.cursorStylePerMode.visualline": "block",
+  "vim.useSystemClipboard": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Java
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java", // JavaではPretterを使わない。
+    "editor.formatOnSave": true
+  },
+  // Java fromatter
+  "java.format.settings.url": "/home/tomita/initialsettings/vscode/eclipse-java-google-style.xml",
+  "java.format.settings.profile": "GoogleStyle",
+  // checkstyle for java
+  "java.checkstyle.configuration": "/home/tomita/initialsettings/ubuntu/vscode/google_checks.xml",
+  "java.checkstyle.autocheck": true,
+  "java.checkstyle.properties": {
+    "basedir": "${workspaceFolder/src/main/java"
+  },
+
+  // python
+  "flake8.args": ["--ignore=E111, E114, E402, E501"],
+  "autopep8.args": ["--ignore=E114, E402, E501"],
+  "autopep8.path": ["/home/tomita/.local/bin/autopep8"],
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "autoDocstring.guessTypes": false, // 関数の引数に型ヒントを自動でつけない
+
+  // Type Script JSX
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": false, // required
+    "editor.formatOnType": false, // required
+    "editor.formatOnSave": true, // optional
+    "editor.formatOnSaveMode": "file" // required to format on save
+  },
+
+  // "vs-code-prettier-eslint.prettierLast": false, // 最後にPrettierが実行されるのを防ぐことで静的解析のルールとPrettierの競合が出ないようにする。
+
+  // C++
+  "C_Cpp.clang_format_style": "Google",
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.tabSize": 4,
+    "editor.indentSize": 4,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+  },
+
+  // ruby
+  "ruby.rubocop.executePath": "/home/tomita/.rbenv/shims/",
+  "ruby.rubocop.configFilePath": "/home/tomita/initialsetting/vscode/rubocop.yml",
+  "ruby.rubocop.onSave": true,
+  "ruby.linter.executablePath": "/home/tomita/.rbenv/shims/ruby",
+  "ruby.linter.run": "onType",
+  "[ruby]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.indentSize": 4,
+  },
+
+  // Lua
+  "[lua]": {
+    "editor.defaultFormatter": "Koihik.vscode-lua-format",
+    "editor.tabSize": 4,
+    "editor.indentSize": 4,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+  },
+  // "vscode-lua-format.binaryPath": "/home/tomita/initialsettings/vscode/lua-format", // 使えなかった
+
+  "rubyTestExplorer.rspecCommand": "bundle exec rspec",
+  "rubyTestExplorer.testFramework": "rspec",
+  "editor.inlineSuggest.enabled": true,
+  "git.openRepositoryInParentFolders": "never",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "github.copilot.editor.enableAutoCompletions": true,
+  
+  // Dev containerの個人的に使うExtensionsを入れる。
+  "dev.containers.defaultExtensions": [
+    "formulahendry.auto-rename-tag",
+  ],
+
+  // Dev Containersでdotfilesを使う。
+  // NOTE: .gitconfigは何もしなくてもDev ContainersのHOMEディレクトリにコピーされる。
+  "dotfiles.repository": "https://github.com/RyosukeDTomita/dotfiles.git",
+  "dotfiles.targetPath": "~/dotfiles",
+  "dotfiles.installCommand": "install.sh", // ~/dotfilesのrepository topからみたスクリプトのパスを指定する。
+
+
+  "github.copilot.enable": {
+    "markdown": "true"
+  },
+}

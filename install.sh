@@ -10,8 +10,9 @@
 # Author: Ryosuke Tomita
 # Date: 2024/07/15
 ##########################################################################
+# create symbolic links to the dotfiles not including .git, .config directory
 for f in $(ls -a ~/dotfiles | grep "^\.[a-zA-Z0-9]"); do
-  if [ "${f}" == ".git" ]; then
+  if [ "${f}" == ".git" || "${f}" == ".config" ]; then
     continue
   fi
   if [ -e !~/${f} ]; then
@@ -29,3 +30,10 @@ for f in $(ls -a ~/dotfiles | grep "^\.[a-zA-Z0-9]"); do
     echo "=====CREATE SYMBOLIC LINKS ${HOME}/dotfiles/${f} --> ${HOME}/${f}====="
   fi
 done
+
+
+# create symbolic links to the .config directory
+if [ ! -d ~/.config ]; then
+  mkdir ~/.config
+fi
+
