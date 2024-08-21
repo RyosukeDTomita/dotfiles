@@ -12,7 +12,7 @@
 ##########################################################################
 # create symbolic links to the dotfiles not including .git, .config directory
 for f in $(ls -a ~/dotfiles | grep "^\.[a-zA-Z0-9]"); do
-  if [ "${f}" == ".git" || "${f}" == ".config" ]; then
+  if [ "${f}" == ".git" ] || [ "${f}" == ".config" ]; then
     continue
   fi
   if [ -e !~/${f} ]; then
@@ -32,8 +32,8 @@ for f in $(ls -a ~/dotfiles | grep "^\.[a-zA-Z0-9]"); do
 done
 
 
-# create symbolic links to the .config directory
-if [ ! -d ~/.config ]; then
-  mkdir ~/.config
+# create symbolic links to the .config/nvim directory
+if [ ! -d ~/.config/nvim ]; then
+  mkdir -p  ~/.config/nvim
 fi
-
+ln -s ~/dotfiles/.config/nvim/* ~/.config/nvim/

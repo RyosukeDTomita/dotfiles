@@ -74,6 +74,7 @@ if grep -q microsoft /proc/version; then
   alias open='wsl-open'
 else
   alias open='xdg-open'
+fi
 
 
 # rm -rf -i
@@ -102,6 +103,7 @@ bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
+bindkey '^A' vi-beginning-of-line
 # ctrl r https://github.com/ohmyzsh/ohmyzsh/issues/5213
 bindkey '^r' history-incremental-search-backward
 
@@ -221,3 +223,4 @@ PATH=$PATH":/usr/local/go/bin"
 
 # aqua
 PATH=$PATH":$(aqua root-dir)/bin"
+

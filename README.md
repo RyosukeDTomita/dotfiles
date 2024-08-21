@@ -6,6 +6,7 @@
 - [ENVIRONMENT](#environment)
 - [PREPARING](#preparing)
 - [HOW TO USE](#how-to-use)
+- [MEMO](#memo)
 
 ---
 
@@ -56,3 +57,8 @@ chmod +x initall.sh
 > Dev Containersかどうかを`REMOTE_CONTAINERS=true`の環境変数で識別している。参考: [GitHub issue](https://github.com/microsoft/vscode-remote-release/issues/3517)
 
 ---
+
+## MEMO
+
+- Dev Containersかどうかを`REMOTE_CONTAINERS=true`の環境変数で識別している。参考: [GitHub issue](https://github.com/microsoft/vscode-remote-release/issues/3517)
+- [nvimのバージョンを上げたらvim-lspのエラーがでるようになった話](https://x.com/sigma5736394841/status/1826319333402042729)
