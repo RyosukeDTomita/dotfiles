@@ -9,6 +9,7 @@ set shellslash "Path delimiter setting, use'/'insted of \
 set ignorecase "ignore Uppercase and lowercase (set ic)
 set history=50 "The number of :command history
 set virtualedit=block "It enables cursor motion in no character zone
+set guicursor=a:block "fix insert mode cursor is bar
 set nrformats-=octal "ignore octal character
 set backspace=indent,eol,start "It enabales back space more wider area
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif "memorize cursol position.

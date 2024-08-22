@@ -15,7 +15,7 @@ for f in $(ls -a ~/dotfiles | grep "^\.[a-zA-Z0-9]"); do
   if [ "${f}" == ".git" ] || [ "${f}" == ".config" ]; then
     continue
   fi
-  if [ -e !~/${f} ]; then
+  if [ ! -e ~/${f} ]; then
     ln -s ~/dotfiles/${f} ~/${f}
     echo "=====CREATE SYMBOLIC LINKS ${HOME}/dotfiles/${f} --> ${HOME}/${f}====="
   # NOTE: The environment variable `REMOTE_CONTAINERS` is true in Dev Containers.
