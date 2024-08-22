@@ -103,6 +103,19 @@ bindkey '^A' vi-beginning-of-line # emacs Ctrl A
 bindkey '^r' history-incremental-search-backward
 
 
+# Git info https://maimux2x.hatenablog.com/entry/2023/12/23/101355
+autoload -Uz vcs_info
+setopt prompt_subst # vsc_info_msg_0_を展開するためのもの
+zstyle ':vcs_info:git:*' check-for-changes true # stagingに変化があったか調べる
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!" # stagingされているがコミットされていない変更がある時
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+" # stagingされいいない変更がある時に+を表示
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f" # branch名の表示
+zstyle ':vcs_info:*' actionformats '(%b|%a)' 
+# prompt再描画時に更新
+precmd () { vcs_info }
+
+PROMPT='%B%F{green}sigma@%m%f%b:%F{green}%~%f%F{cyan}$vcs_info_msg_0_%f%F{yellow}\$%f '
+
 # vi mode status https://zenn.dev/nabezokodaikon/articles/41b92074b2e22f
 RESET='%f'            # リセット
 YELLOW='%F{yellow}'
@@ -111,46 +124,47 @@ BLUE='%F{blue}'       # 青
 BOLD='%B'
 
 #PROMPT_NOR="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[NOR]${RESET}:${BLUE}%~${RESET}$ "
-PROMPT_NOR="${debian_chroot:+($debian_chroot)}${GREEN}sigma@%m${RESET}${YELLOW}[NOR]${RESET}:${BLUE}%~${RESET}$ "
-PROMPT_INS=$(echo "$PROMPT_NOR" | sed 's/\[NOR\]/\[INS\]/')
-PROMPT_VIS=$(echo "$PROMPT_NOR" | sed 's/\[NOR\]/\[VIS\]/')
+#PROMPT="${debian_chroot:+($debian_chroot)}${GREEN}sigma@%m${RESET}${YELLOW}[INS]${RESET}:${BLUE}%~${RESET}$vcs_info_msg_0_${RESET}${YELLOW}${RESET}\$ "
+#PROMPT_NOR="${debian_chroot:+($debian_chroot)}${GREEN}sigma@%m${RESET}${YELLOW}[NOR]${RESET}:${BLUE}%~${RESET}$vcs_info_msg_0_${RESET}${YELLOW}${RESET}\$ "
+#PROMPT_INS=$(echo "$PROMPT_NOR" | sed 's/\[NOR\]/\[INS\]/')
+#PROMPT_VIS=$(echo "$PROMPT_NOR" | sed 's/\[NOR\]/\[VIS\]/')
 
-function zle-line-pre-redraw {
-  if [[ $REGION_ACTIVE -ne 0 ]]; then
-    NEW_PROMPT=$PROMPT_VIS
-  elif [[ $KEYMAP = vicmd ]]; then
-    VI_MODE=NOR
-    NEW_PROMPT=$PROMPT_NOR
-  elif [[ $KEYMAP = main ]]; then
-    VI_MODE=INS
-    NEW_PROMPT=$PROMPT_INS
-  fi
-
-  if [[ $PROMPT = $NEW_PROMPT ]]; then
-    return
-  fi
-
-  PROMPT=$NEW_PROMPT
-
-  zle reset-prompt
-}
-
-function zle-keymap-select zle-line-init {
-  case $KEYMAP in
-    vicmd)
-      PROMPT=$PROMPT_NOR
-      ;;
-    main|viins)
-      PROMPT=$PROMPT_INS
-      ;;
-  esac
-
-  zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
-zle -N zle-line-pre-redraw
+#function zle-line-pre-redraw {
+#  if [[ $REGION_ACTIVE -ne 0 ]]; then
+#    #NEW_PROMPT=$PROMPT_VIS
+#    vi_mode=VIS
+#  elif [[ $KEYMAP = vicmd ]]; then
+#    #NEW_PROMPT=$PROMPT_NOR
+#    vi_mode=NOR
+#  elif [[ $KEYMAP = main ]]; then
+#    #NEW_PROMPT=$PROMPT_INS
+#    vi_mode=INS
+#  fi
+#
+#  # if [[ $PROMPT = $NEW_PROMPT ]]; then
+#  #   return
+#  # fi
+#  PROMPT=$(echo "$PROMPT" | sed "s/\[.*\]/\[$vi_mode\]/")
+#
+#  zle reset-prompt
+#}
+#
+#function zle-keymap-select zle-line-init {
+#  case $KEYMAP in
+#    vicmd)
+#      PROMPT=$PROMPT_NOR
+#      ;;
+#    main|viins)
+#      PROMPT=$PROMPT_INS
+#      ;;
+#  esac
+#
+#  zle reset-prompt
+#}
+#
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+#zle -N zle-line-pre-redraw
 
 
 # convert caps ctrl
