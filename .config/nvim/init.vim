@@ -29,11 +29,8 @@ syntax enable
 colorscheme slate
 "NOTE: fix background color become black error
 set termguicolors  "activate gui color
-"set background=dark  "
+set background=dark "automatically select colorscheme
 highlight Normal ctermbg=NONE guibg=NONE  "setting the backgroud color to transparent.
-
-"color
-filetype plugin indent on
 
 "tab
 set tabstop=2 "display tab=2space
@@ -41,6 +38,8 @@ set expandtab "tab=space
 set shiftwidth=2 "indentation operations
 set smartindent "auto indent
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+
+filetype plugin indent on "Apply indent settings according to filetype
 
 "modeline https://qiita.com/koara-local/items/536248334edf288292fc
 set modeline

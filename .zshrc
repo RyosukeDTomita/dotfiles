@@ -1,27 +1,24 @@
 #------------added by tomita------------
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-
-# append to history file no overwrite
-setopt APPEND_HISTORY
-setopt SHARE_HISTORY
-setopt INC_APPEND_HISTORY
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt HIST_VERIFY
-setopt EXTENDED_HISTORY
+HISTSIZE=1000 #"現在のshellが使用できる履歴数
+SAVEHIST=1000 #セッション終了時にHISTFILEに保存される履歴数
+setopt APPEND_HISTORY # 複数のzshを開いている場合に最後の履歴だけがHISTFILE
+setopt SHARE_HISTORY # 別のターミナルとの履歴も安全にHISTFILEに保存される。NOTE: デフォルトでは複数のターミナルを開いている場合には最後に閉じたターミナルの履歴が保存される。
+setopt INC_APPEND_HISTORY # 即座にHISTFILEに追加
+setopt HIST_IGNORE_SPACE # コマンドの先頭にSPACEを入れることでHISTFILEに保存されなくなる
+setopt HIST_REDUCE_BLANKS # 無駄なSPACEを削除
+setopt HIST_VERIFY # 履歴から選んだコマンドが即座に実行されなくなる
+setopt EXTENDED_HISTORY # 実行時刻を記録する
 
 # ignore duplicate history
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
+#setopt HIST_IGNORE_DUPS # 直前に実行したコマンドと同じコマンドを履歴に追加しない
+setopt HIST_IGNORE_ALL_DUPS # 既に履歴に存在するコマンドがサイド実行された時に履歴に追加しない
+setopt HIST_FIND_NO_DUPS # Ctrl r使用時に重複コマンドを表示しない
 
 # ignore blank line history
 setopt HIST_IGNORE_SPACE
 
-
-#
+# sigma's alias
 PATH=$PATH":/home/tomita/bash"
 CDPATH=:/home/tomita/memo/ # cdのtab completionのsuggestに追加
 alias cd='cd ' # cdの後にエイリアスを使えるようにする設定
@@ -33,7 +30,6 @@ alias matrix='cmatrix -abs'
 alias rm='rm -iv'
 alias mv='mv -iv'
 alias cp='cp -iv'
-alias open='xdg-open'
 alias lhS='ls -lhS'
 alias lsl='clear && ls'
 alias dd='echo "dd is not available"'
@@ -48,6 +44,14 @@ alias ipython='ipython3'
 alias ipython3='ipython3 --TerminalInteractiveShell.editing_mode=vi'
 alias gs='git status'
 alias gb='git branch'
+
+# WSL or Ubuntu desktop
+# NOTE: /proc/versionにmicrosoftが入っているかどうかでWSLか判定できる。
+if grep -q microsoft /proc/version; then
+  alias open='wsl-open'
+else
+  alias open='xdg-open'
+fi
 
 # settings for ubuntu desktop
 alias screenshot='gnome-screenshot'
@@ -66,15 +70,6 @@ alias goldendict='goldendict > /dev/null 2>&1 &'
 alias veracrypt='veracrypt > /dev/null 2>&1 &'
 alias unmount='fusermount -u'
 alias redmine='cd /usr/local/bin/redmine-4.2.8 && bundle exec rails server webrick -e production > /dev/null 2>&1 &'
-
-
-# WSL or Ubuntu desktop
-# NOTE: /proc/versionにmicrosoftが入っているかどうかでWSLか判定できる。
-if grep -q microsoft /proc/version; then
-  alias open='wsl-open'
-else
-  alias open='xdg-open'
-fi
 
 
 # rm -rf -i
@@ -99,12 +94,12 @@ function rm() {
 
 # settings for command line edit mode vi
 bindkey -v # bash set -o vi
-bindkey '^P' up-history
-bindkey '^N' down-history
+bindkey '^P' up-history # emacs Ctrl p
+bindkey '^N' down-history # emacs Ctrl n
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
-bindkey '^A' vi-beginning-of-line
-# ctrl r https://github.com/ohmyzsh/ohmyzsh/issues/5213
+bindkey '^A' vi-beginning-of-line # emacs Ctrl A
+# Ctrl r https://github.com/ohmyzsh/ohmyzsh/issues/5213
 bindkey '^r' history-incremental-search-backward
 
 
