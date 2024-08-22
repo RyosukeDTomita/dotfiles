@@ -109,40 +109,43 @@ YELLOW='%F{yellow}'
 GREEN='%F{green}'     # 緑
 BLUE='%F{blue}'       # 青
 BOLD='%B'
-#PROMPT_INS="${debian_chroot:+($debian_chroot)}${BOLD}${GREEN}%n@%m${RESET}${YELLOW}[INS]${RESET}:${BLUE}%~${RESET}$ "
-PROMPT_INS="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[INS]${RESET}:${BLUE}%~${RESET}$ "
-PROMPT_NOR="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[NOR]${RESET}:${BLUE}%~${RESET}$ "
-PROMPT_VIS="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[VIS]${RESET}:${BLUE}%~${RESET}$ "
+
+#PROMPT_NOR="${debian_chroot:+($debian_chroot)}${GREEN}%n@%m${RESET}${YELLOW}[NOR]${RESET}:${BLUE}%~${RESET}$ "
+PROMPT_NOR="${debian_chroot:+($debian_chroot)}${GREEN}sigma@%m${RESET}${YELLOW}[NOR]${RESET}:${BLUE}%~${RESET}$ "
+PROMPT_INS=$(echo "$PROMPT_NOR" | sed 's/\[NOR\]/\[INS\]/')
+PROMPT_VIS=$(echo "$PROMPT_NOR" | sed 's/\[NOR\]/\[VIS\]/')
 
 function zle-line-pre-redraw {
-    if [[ $REGION_ACTIVE -ne 0 ]]; then
-        NEW_PROMPT=$PROMPT_VIS
-    elif [[ $KEYMAP = vicmd ]]; then
-        NEW_PROMPT=$PROMPT_NOR
-    elif [[ $KEYMAP = main ]]; then
-        NEW_PROMPT=$PROMPT_INS
-    fi
+  if [[ $REGION_ACTIVE -ne 0 ]]; then
+    NEW_PROMPT=$PROMPT_VIS
+  elif [[ $KEYMAP = vicmd ]]; then
+    VI_MODE=NOR
+    NEW_PROMPT=$PROMPT_NOR
+  elif [[ $KEYMAP = main ]]; then
+    VI_MODE=INS
+    NEW_PROMPT=$PROMPT_INS
+  fi
 
-    if [[ $PROMPT = $NEW_PROMPT ]]; then
-        return
-    fi
+  if [[ $PROMPT = $NEW_PROMPT ]]; then
+    return
+  fi
 
-    PROMPT=$NEW_PROMPT
+  PROMPT=$NEW_PROMPT
 
-    zle reset-prompt
+  zle reset-prompt
 }
 
 function zle-keymap-select zle-line-init {
-    case $KEYMAP in
-        vicmd)
-            PROMPT=$PROMPT_NOR
-            ;;
-        main|viins)
-            PROMPT=$PROMPT_INS
-            ;;
-    esac
+  case $KEYMAP in
+    vicmd)
+      PROMPT=$PROMPT_NOR
+      ;;
+    main|viins)
+      PROMPT=$PROMPT_INS
+      ;;
+  esac
 
-    zle reset-prompt
+  zle reset-prompt
 }
 
 zle -N zle-line-init

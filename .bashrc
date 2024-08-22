@@ -194,6 +194,7 @@ function rm() {
 set -o vi
 bind -f ~/.inputrc # enable ctrl p, ctrl n
 # show mode
+# NOTE: bashの仕様上ターミナル変数の更新は次回ターミナル変数が表示される時なので動的には変わらない。
 function update_prompt {
   # get current mode
   if bind -v | grep 'vi-insert' > /dev/null; then
