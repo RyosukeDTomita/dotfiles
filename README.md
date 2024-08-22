@@ -14,6 +14,10 @@
 
 Manage .dotfiles.
 
+> [!NOTE]
+> I decided to use [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode) from 2024/08/22.
+> This is the [archive](https://github.com/RyosukeDTomita/dotfiles/tree/archive/before-ohmyzsh) of before using ohmyzsh.
+
 > [!WARNING]
 > DO NOT include credential info .e.g. `~/.ssh/id_rsa`, `~/.aws/credentials` etc.
 
