@@ -73,6 +73,7 @@ ZSH_THEME="essembeh"
 plugins=(
   git
   vi-mode
+  zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -108,7 +109,14 @@ RPROMPT="\$(vi_mode_prompt_info)$RPROMPT"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
 #----------added by sigma----------
+# zsh-plugins
+bindkey '^I' menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
+
+
+#
 HISTFILE=~/.zsh_history
 HISTSIZE=1000 #"現在のshellが使用できる履歴数
 SAVEHIST=1000 #セッション終了時にHISTFILEに保存される履歴数
@@ -202,8 +210,6 @@ function rm() {
 } # end function rm
 
 
-# Ctrl r https://github.com/ohmyzsh/ohmyzsh/issues/5213
-bindkey '^r' history-incremental-search-backward
 
 
 # convert caps ctrl
