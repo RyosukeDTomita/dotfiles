@@ -154,7 +154,7 @@ alias dd='echo "dd is not available"'
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
 alias du='du -h'
-if type vim > /dev/null 2>&1; then
+if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 alias xsel='xsel -bi'

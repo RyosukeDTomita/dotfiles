@@ -137,7 +137,7 @@ alias chrome='google-chrome-stable > /dev/null 2>&1 &'
 alias firefox='firefox > /dev/null 2>&1 &'
 alias discord='discord > /dev/null 2>&1 &'
 #alias vim='source /home/tomita/bash/vim'
-if type vim > /dev/null 2>&1; then
+if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 alias cd='cd '
