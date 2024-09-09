@@ -66,10 +66,17 @@ nnoremap <ESC><ESC> :nohl<CR>
 "nnoremap <ESC><ESC><ESC> :colorscheme default<CR>
 nnoremap x "_x
 nnoremap s "_s
-"do not yunk dd
-nnoremap dd "_dd
 
-imap <C-x> <C-x><C-f>
+"do not yunk dd when CR only
+function! SmartDelete()
+  if getline('.') == ''
+    normal! "_dd
+  else
+    normal! dd
+  endif
+endfunction
+
+nnoremap dd :call SmartDelete()<CR>
 
 
 "**********dein**********
