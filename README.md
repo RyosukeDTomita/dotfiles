@@ -39,6 +39,14 @@ git clone RyosukeDTomita/dotfiles.git
 
 2. install tmux
 
+3. install VSCode
+
+4. install zsh
+
+```shell
+sudo apt install zsh
+```
+
 ---
 
 ## HOW TO USE
@@ -47,6 +55,10 @@ git clone RyosukeDTomita/dotfiles.git
 cd dotfiles/
 chmod +x initall.sh
 ./install.sh
+chmod +x install-ohmyzsh.sh
+./install-ohmyzsh.sh
+chmod +x install-neovim.sh
+./install-neovim.sh
 ```
 
 > [!NOTE]
@@ -59,6 +71,14 @@ chmod +x initall.sh
 
 > [!NOTE]
 > Dev Containersかどうかを`REMOTE_CONTAINERS=true`の環境変数で識別している。参考: [GitHub issue](https://github.com/microsoft/vscode-remote-release/issues/3517)
+
+### VSCode
+
+```shell
+ln -s $HOME/dotfiles/.config/Code/User/keybindings.json $HOME/.config/Code/User/keybindings.json
+# VSCodeのsettings.jsonはちょこちょこいじるので一旦シンボリックリンクにはしない
+cp $HOME/dotfiles/.config/Code/User/settings.json $HOME/.config/Code/User/settings.json
+```
 
 ---
 
