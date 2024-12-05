@@ -243,6 +243,11 @@ fi
 #export RSYNC_PROXY=$http_proxy
 
 
+#-----環境ごとの特殊設定，Secretsを外だし-----
+if [ -f ~/.shell_secrets ]; then
+  source ~/.shell_secrets
+fi
+
 # java
 export JAVA_HOME=/usr/lib/jvm/jdk-11.0.15/
 
