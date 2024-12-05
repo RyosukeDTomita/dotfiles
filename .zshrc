@@ -244,7 +244,7 @@ fi
 
 # aws
 alias as='aws sts get-caller-identity'
-# NOTE: zsh cannot use complete directory.
+# NOTE: zsh cannot use `complete` directly
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
@@ -272,6 +272,11 @@ fi
 # Ctrl r https://github.com/ohmyzsh/ohmyzsh/issues/5213
 #bindkey '^r' history-incremental-search-backward
 
+#-----環境ごとの特殊設定，Secretsを外だし-----
+if [ -f ~/.shell_secrets ]; then
+  source ~/.shell_secrets
+fi
+
 
 #-----add PATH-----
 # java
@@ -288,6 +293,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # go lang
 PATH=$PATH":/usr/local/go/bin"
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+PATH=$PATH":${GOBIN}"
 
 
 # aqua
