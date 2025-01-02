@@ -37,3 +37,9 @@ if [ ! -d ~/.config/nvim ]; then
   mkdir -p  ~/.config/nvim
 fi
 ln -s ~/dotfiles/.config/nvim/* ~/.config/nvim/
+
+# create symbolic links to the .config/git/ignore
+if [ ! -d ~/.config/git ]; then
+  mkdir -p  ~/.config/git
+fi
+ln -s ~/dotfiles/.config/git/* ~/.config/git/
