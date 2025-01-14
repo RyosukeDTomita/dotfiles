@@ -293,9 +293,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # go lang
 PATH=$PATH":/usr/local/go/bin"
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-PATH=$PATH":${GOBIN}"
+PATH=$PATH":$(go env GOPATH)/bin"
 
 
 # aqua

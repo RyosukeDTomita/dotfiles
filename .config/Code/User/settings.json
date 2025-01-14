@@ -160,6 +160,11 @@
   // Dev containerの個人的に使うExtensionsを入れる。
   "dev.containers.defaultExtensions": [
     "formulahendry.auto-rename-tag",
+    "coolcline.coolcline",
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "github.copilot-workspace",
+
   ],
 
   // Dev Containersでdotfilesを使う。
