@@ -1,3 +1,5 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -73,7 +75,7 @@ ZSH_THEME="essembeh"
 plugins=(
   git
   vi-mode
-  zsh-autocomplete
+  #zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -299,3 +301,5 @@ PATH=$PATH":$(go env GOPATH)/bin"
 # aqua
 PATH=$PATH":$(aqua root-dir)/bin"
 
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
