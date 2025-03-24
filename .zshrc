@@ -75,7 +75,7 @@ ZSH_THEME="essembeh"
 plugins=(
   git
   vi-mode
-  #zsh-autocomplete
+  zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -294,12 +294,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # go lang
-PATH=$PATH":/usr/local/go/bin"
-PATH=$PATH":$(go env GOPATH)/bin"
+if command -v go >/dev/null 2>&1; then
+  PATH=$PATH":/usr/local/go/bin"
+  PATH=$PATH":$(go env GOPATH)/bin"
+fi
 
 
 # aqua
-PATH=$PATH":$(aqua root-dir)/bin"
+if command -v aqua >/dev/null 2>&1; then
+  PATH=$PATH:$(aqua root-dir)/bin
+fi
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
