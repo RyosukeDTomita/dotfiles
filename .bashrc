@@ -272,15 +272,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # go lang
-export PATH=$PATH:/usr/local/go/bin
+if command -v go >/dev/null 2>&1; then
+  PATH=$PATH":/usr/local/go/bin"
+  PATH=$PATH":$(go env GOPATH)/bin"
+fi
 
 
 # aqua
-export PATH="$(aqua root-dir)/bin:$PATH"
-
-
-# tmp
-alias openbook='open ~/bookshelf/english/english_grammar_in_use_intermediate_2019_5th-ed.pdf'
+if command -v aqua >/dev/null 2>&1; then
+  PATH=$PATH:$(aqua root-dir)/bin
+fi
 
 
 # pyenv
