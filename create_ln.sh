@@ -3,7 +3,8 @@
 # Name: create ln
 #
 # Description: This script is used to create symbolic links to the dotfiles.
-# NOTE: dotfiles/ directory must be placed in the home directory. For host OS.
+# NOTE: dotfiles/ directory must be placed in the home directory. 
+#  For host OS.
 #
 # Usage: ./install.sh
 #
@@ -33,3 +34,14 @@ if [ ! -d ~/.config/git ]; then
   mkdir -p  ~/.config/git
 fi
 ln -s ~/dotfiles/.config/git/* ~/.config/git/
+
+# create symbolic links to the .config/Code/User/
+if [ ! -d ~/.config/Code/User ]; then
+  mkdir -p  ~/.config/Code/User
+fi
+if [ ! -e ~/.config/Code/User/settings.json ]; then
+  ln -s ~/dotfiles/.config/Code/User/settings.json ~/.config/Code/User/settings.json
+fi
+if [ ! -e ~/.config/Code/User/keybindings.json ]; then
+  ln -s ~/dotfiles/.config/Code/User/keybindings.json ~/.config/Code/User/keybindings.json
+fi
