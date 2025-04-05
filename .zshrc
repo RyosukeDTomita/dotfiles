@@ -260,7 +260,7 @@ fi
 
 
 # SSL decode for Wireshark
-#export SSLKEYLOGFILE=/home/tomita/ssl-key.log
+export SSLKEYLOGFILE=/home/tomita/ssl-key.log
 
 
 # settings for command line edit mode vi
@@ -307,3 +307,6 @@ fi
 
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
+
+# deno
+. "/home/tomita/.deno/env"
