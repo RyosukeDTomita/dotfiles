@@ -310,3 +310,6 @@ fi
 
 # deno
 . "/home/tomita/.deno/env"
+
+# oh-my-zshのcore.pagerによってgit status等がless形式でページングされてしまうとAI Agentが止まってしまうのでページングをやめる。
+export GIT_PAGER=cat
