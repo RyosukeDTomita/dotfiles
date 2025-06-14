@@ -309,7 +309,9 @@ fi
 [[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
 
 # deno
-. "/home/tomita/.deno/env"
+if [ -f "/home/tomita/.deno/env" ]; then
+  . "/home/tomita/.deno/env"
+fi
 
 # oh-my-zshのcore.pagerによってgit status等がless形式でページングされてしまうとAI Agentが止まってしまうのでページングをやめる。
 export GIT_PAGER=cat
