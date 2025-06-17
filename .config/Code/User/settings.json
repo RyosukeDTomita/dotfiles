@@ -5,12 +5,18 @@
   "terminal.integrated.fontSize": 22,
   "editor.minimap.enabled": false, // minimapを非表示にする
   "workbench.editor.enablePreview": false, // ファイルをsingleClick時に並列のタブで開くようにする
+  "update.mode": "default", // 更新を有効にする
+  "update.showReleaseNotes": true,
+
+  // NOTE: VS Codeのデフォルト設定がかわったらしく，Vim Extensionsと干渉するのでオフにする https://github.com/VSCodeVim/Vim/issues/9672
+  "editor.experimentalEditContextEnabled": false,
+
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#d3d3d3",
     "terminalCursor.foreground": "#d3d3d3",
     "terminal.background": "#032129",
     "sideBar.background": "#032129"
-  }, 
+  },
 
   // icons
   "workbench.iconTheme": "material-icon-theme",
@@ -61,27 +67,18 @@
   // GitHub Copilot
   "github.copilot.enable": {
     "markdown": true
-    // "markdown": false
   },
   "accessibility.voice.keywordActivation": "inlineChat",
   "editor.inlineSuggest.enabled": true,
   "editor.inlineSuggest.suppressSuggestions": true,
-  "github.copilot.editor.enableAutoCompletions": true,
   "chat.agent.enabled": true,
-  "chat.tools.autoApprove": true,
+  "chat.tools.autoApprove": true, // YOLO
   "cSpell.userWords": [
     "modelcontextprotocol"
   ],
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "roo-cline.allowedCommands": [
-    "npm test",
-    "npm install",
-    "tsc",
-    "git log",
-    "git diff",
-    "git show"
-  ],
-  "chat.mcp.discovery.enabled": true, // YOLO
+
+  // MCP
+  "chat.mcp.discovery.enabled": true, // MCP YOLO
   "mcp": {
     "servers": {
       "burp": {
@@ -90,4 +87,5 @@
       }
     }
   },
+
 }
