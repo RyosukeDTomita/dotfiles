@@ -8,8 +8,7 @@
   "update.mode": "default", // 更新を有効にする
   "update.showReleaseNotes": true,
 
-  // NOTE: VS Codeのデフォルト設定がかわったらしく，Vim Extensionsと干渉するのでオフにする https://github.com/VSCodeVim/Vim/issues/9672
-  "editor.experimentalEditContextEnabled": false,
+  // "editor.editContext": false,
 
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#d3d3d3",
@@ -33,7 +32,7 @@
 
   // vim
   "vim.vimrc.enable": true,
-  "vim.vimrc.path": "/home/tomita/.code_vimrc",
+  "vim.vimrc.path": "~/.code_vimrc",
   "editor.cursorStyle": "block-outline",
   "editor.cursorBlinking": "solid",
   "vim.cursorStylePerMode.insert": "line",
@@ -78,14 +77,6 @@
   ],
 
   // MCP
-  "chat.mcp.discovery.enabled": true, // MCP YOLO
-  "mcp": {
-    "servers": {
-      "burp": {
-        "type": "sse",
-        "url": "http://127.0.0.1:9876/sse",
-      }
-    }
-  },
+  "chat.mcp.discovery.enabled": true,
 
 }

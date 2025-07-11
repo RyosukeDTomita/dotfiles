@@ -291,7 +291,9 @@ PATH=$PATH":$HOME/.rbenv/bin"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
 
 # go lang
 if command -v go >/dev/null 2>&1; then
@@ -300,18 +302,29 @@ if command -v go >/dev/null 2>&1; then
 fi
 
 
-# aqua
+# aquaでinstallしたツールにPATHを通す
 if command -v aqua >/dev/null 2>&1; then
   PATH=$PATH:$(aqua root-dir)/bin
 fi
 
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
 
 # deno
 if [ -f "/home/tomita/.deno/env" ]; then
   . "/home/tomita/.deno/env"
 fi
 
+
 # oh-my-zshのcore.pagerによってgit status等がless形式でページングされてしまうとAI Agentが止まってしまうのでページングをやめる。
 export GIT_PAGER=cat
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# mise
+if [ -s ${HOME}/.local/bin/mise ]; then
+  eval "$(${HOME}/.local/bin/mise activate zsh)"
+fi
+
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/.local/share/amazon-q/shell/zshrc.post.zsh"
+
