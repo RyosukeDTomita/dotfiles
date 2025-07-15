@@ -1,5 +1,5 @@
 #!/bin/bash
-# NOTE: dein.vimは，.confing/nvim/init.vimにより起動時にinstallされる。
+# NOTE: dein.vimは，.config/nvim/init.vimにより起動時にinstallされる。
 # FIXME: 適宜最新バージョンに変更
 wget https://github.com/neovim/neovim/releases/download/v0.11.2/nvim-linux-x86_64.appimage -O nvim.appimage
 chmod +x nvim.appimage
