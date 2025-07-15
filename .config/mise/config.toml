@@ -1,2 +1,8 @@
 [tools]
+gemini = "latest"
+gh = "latest"
 jq = "latest"
+neovim = "latest"
+node = "latest"
+pandoc = "latest"
+
