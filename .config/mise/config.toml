@@ -1,7 +1,8 @@
 [tools]
+claude = "latest"
 gemini = "latest"
 jq = "latest"
 neovim = "latest"
 node = "latest"
 pandoc = "latest"
-
+tmux = "latest"
