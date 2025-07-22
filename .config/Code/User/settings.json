@@ -8,7 +8,7 @@
   "update.mode": "default", // 更新を有効にする
   "update.showReleaseNotes": true,
 
-  // "editor.editContext": false,
+  "editor.editContext": false,
 
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#d3d3d3",
