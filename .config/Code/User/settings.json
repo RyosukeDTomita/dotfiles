@@ -65,7 +65,11 @@
 
   // GitHub Copilot
   "github.copilot.enable": {
-    "markdown": true
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "haskell": false
   },
   "accessibility.voice.keywordActivation": "inlineChat",
   "editor.inlineSuggest.enabled": true,
@@ -78,5 +82,7 @@
 
   // MCP
   "chat.mcp.discovery.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "haskell.manageHLS": "GHCup",
 
 }

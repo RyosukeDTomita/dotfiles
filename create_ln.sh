@@ -64,3 +64,13 @@ if [ ! -e "$mise_conf" ]; then
   echo "=====CREATE SYMBOLIC LINKS $mise_src --> $mise_conf====="
   ln -s "$mise_src" "$mise_conf"
 fi
+
+# =====Claude Code =====
+claude_conf=~/.claude/settings.json
+claude_src=~/dotfiles/.claude/settings.json
+
+if [ ! -e "$claude_conf" ]; then
+  mkdir -p "$(dirname "$claude_conf")"
+  echo "=====CREATE SYMBOLIC LINKS $claude_src --> $claude_conf====="
+  ln -s "$claude_src" "$claude_conf"
+fi
