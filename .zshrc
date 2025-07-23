@@ -260,7 +260,7 @@ fi
 
 
 # SSL decode for Wireshark
-export SSLKEYLOGFILE=/home/sigma/ssl-key.log
+#export SSLKEYLOGFILE=/home/sigma/ssl-key.log
 
 
 # settings for command line edit mode vi
