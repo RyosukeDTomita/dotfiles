@@ -164,6 +164,8 @@ alias ipython='ipython3'
 alias ipython3='ipython3 --TerminalInteractiveShell.editing_mode=vi'
 alias gs='git status'
 alias gb='git branch'
+alias gl='git log --graph --oneline -n'
+alias gl10='git log --graph --oneline -n 10'
 
 # WSL or Ubuntu desktop
 # NOTE: /proc/versionにmicrosoftが入っているかどうかでWSLか判定できる。
@@ -176,11 +178,10 @@ fi
 # settings for ubuntu desktop
 alias screenshot='gnome-screenshot'
 alias lock="xdg-screensaver lock"
-alias upower='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+#alias upower='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias chrome='google-chrome-stable > /dev/null 2>&1 &'
 alias firefox='firefox > /dev/null 2>&1 &'
 alias discord='discord > /dev/null 2>&1 &'
-alias dl='/home/tomita/Downloads'
 alias fc='fc -e'
 alias winekd='wine ~/app/kindle-for-pc-1-17-44183.exe'
 alias vpngate='cd ~/app/vpngate-with-proxy && ./run tui && cd -'
@@ -189,7 +190,6 @@ alias vchanger='sox -d -d pitch -700 contrast 100 echo 0.8 0.88 6 0.4 '
 alias goldendict='goldendict > /dev/null 2>&1 &'
 alias veracrypt='veracrypt > /dev/null 2>&1 &'
 alias unmount='fusermount -u'
-alias redmine='cd /usr/local/bin/redmine-4.2.8 && bundle exec rails server webrick -e production > /dev/null 2>&1 &'
 
 
 # rm -rf -i
