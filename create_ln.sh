@@ -16,7 +16,7 @@ rm ~/.zshrc
 
 # create symbolic links to the dotfiles not including .git, .config directory
 for f in $(ls -a ~/dotfiles | grep "^\.[a-zA-Z0-9]"); do
-  if [ "${f}" == ".git" ] || [ "${f}" == ".config" ] || [ "${f}" == ".claude" ]; then
+  if [ "${f}" == ".git" ] || [ "${f}" == ".config" ] || [ "${f}" == ".claude" ] || [ "${f}" == ".gitconfig" ]; then
     continue
   fi
   if [ ! -e ~/${f} ]; then
