@@ -8,6 +8,7 @@
   "update.mode": "default", // 更新を有効にする
   "update.showReleaseNotes": true,
 
+  // Vim Extensionsと干渉しないようオフにする
   "editor.editContext": false,
 
   "workbench.colorCustomizations": {
