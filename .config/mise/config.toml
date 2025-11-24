@@ -10,3 +10,19 @@ tmux = "latest"
 [tasks.restart-alsa]
 description = "Restart ALSA to fix the audio output issue"
 run = "sudo alsa force-reload"
+
+[tasks.kill-Kindle]
+description = "kill all process about Kindle to restart Kindle"
+run = "pkill -f Kindle"
+
+[tasks.random-mac]
+description = "change to random MAC"
+run = """
+NIC=$(ls /sys/class/net/ | grep 'wl.*0')
+sudo ip link set dev "$NIC" down
+sudo macchanger -r "$NIC"
+sudo ip link set dev "$NIC" up
+"""
+
+[settings]
+idiomatic_version_file_enable_tools = []

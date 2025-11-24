@@ -2,11 +2,12 @@
   "workbench.colorTheme": "Solarized Dark",
   "editor.wordWrap": "on",
   "editor.fontSize": 20,
-  "terminal.integrated.fontSize": 22,
-  "editor.minimap.enabled": false, // minimapを非表示にする
+  "terminal.integrated.fontSize": 22, // minimapを非表示にする
   "workbench.editor.enablePreview": false, // ファイルをsingleClick時に並列のタブで開くようにする
   "update.mode": "default", // 更新を有効にする
   "update.showReleaseNotes": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
 
   // Vim Extensionsと干渉しないようオフにする
   "editor.editContext": false,
@@ -48,6 +49,7 @@
   // Dev containerの個人的に使うExtensionsを入れる。
   "dev.containers.defaultExtensions": [
     "formulahendry.auto-rename-tag",
+    "Anthropic.claude-code"
   ],
 
   // Dev Containersでdotfilesを使う。
@@ -57,6 +59,8 @@
   // ~/dotfilesのrepository topからみたスクリプトのパスを指定する。
   "dotfiles.installCommand": "install.sh",
   "chat.editing.alwaysSaveWithGeneratedChanges": true,
+
+  // React
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -82,8 +86,24 @@
   ],
 
   // MCP
-  "chat.mcp.discovery.enabled": true,
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": true,
+    "windsurf": true,
+    "cursor-global": true,
+    "cursor-workspace": true
+  },
   "github.copilot.nextEditSuggestions.enabled": true,
   "haskell.manageHLS": "GHCup",
+  "python.defaultInterpreterPath": "/home/sigma/.local/bin/python3.14",
+  "chat.tools.terminal.autoApprove": {
+    "git ls-files gradle/wrapper/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "jar": true,
+    "javap": true
+  },
+  "haskell.ghcupExecutablePath": "~/.ghcup/bin/ghcup",
+  "github.copilot.chat.localeOverride": "ja",
 
 }

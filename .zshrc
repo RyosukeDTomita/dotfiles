@@ -75,7 +75,7 @@ ZSH_THEME="essembeh"
 plugins=(
   git
   vi-mode
-  zsh-autocomplete
+  #zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -166,7 +166,8 @@ alias gs='git status'
 alias gb='git branch'
 alias gl='git log --graph --oneline -n'
 alias gl10='git log --graph --oneline -n 10'
-
+alias rmnore='git rm -r --cached'
+alias gw='git worktree'
 # WSL or Ubuntu desktop
 # NOTE: /proc/versionにmicrosoftが入っているかどうかでWSLか判定できる。
 if grep -q microsoft /proc/version; then
@@ -281,9 +282,6 @@ fi
 
 
 #-----add PATH-----
-# java
-export JAVA_HOME=/usr/lib/jvm/jdk-11.0.15/
-
 
 # rbenv
 PATH=$PATH":$HOME/.rbenv/bin"
@@ -330,3 +328,6 @@ fi
 
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+
+[ -f "/home/sigma/.ghcup/env" ] && . "/home/sigma/.ghcup/env" # ghcup-env
