@@ -104,3 +104,46 @@ if [ -d "$claude_commands_src" ]; then
     fi
   done
 fi
+
+
+nix_dir=~/.config/nix
+nix_src=~/dotfiles/.config/nix/
+
+if [ ! -d "$nix_dir" ]; then
+  mkdir -p "$nix_src"
+  echo "=====CREATE DIRECTORY $nix_dir====="
+fi
+
+if [ -d "$nix_src" ]; then
+  for cmd_file in "$nix_src"/*.conf; do
+    if [ -f "$cmd_file" ]; then
+      cmd_basename=$(basename "$cmd_file")
+      if [ ! -e "$nix_dir/$cmd_basename" ]; then
+        ln -s "$cmd_file" "$nix_dir/$cmd_basename"
+        echo "=====CREATE SYMBOLIC LINKS $cmd_file --> $nix_dir/$cmd_basename====="
+      fi
+    fi
+  done
+fi
+
+
+
+direnv_dir=~/.config/direnv
+direnv_src=~/dotfiles/.config/direnv/
+
+if [ ! -d "$direnv_dir" ]; then
+  mkdir -p "$direnv_src"
+  echo "=====CREATE DIRECTORY $direnv_dir====="
+fi
+
+if [ -d "$direnv_src" ]; then
+  for cmd_file in "$direnv_src"/*rc; do
+    if [ -f "$cmd_file" ]; then
+      cmd_basename=$(basename "$cmd_file")
+      if [ ! -e "$direnv_dir/$cmd_basename" ]; then
+        ln -s "$cmd_file" "$direnv_dir/$cmd_basename"
+        echo "=====CREATE SYMBOLIC LINKS $cmd_file --> $direnv_dir/$cmd_basename====="
+      fi
+    fi
+  done
+fi

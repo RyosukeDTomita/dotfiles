@@ -331,3 +331,5 @@ fi
 
 
 [ -f "/home/sigma/.ghcup/env" ] && . "/home/sigma/.ghcup/env" # ghcup-env
+
+eval "$(direnv hook zsh)"

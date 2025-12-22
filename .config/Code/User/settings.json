@@ -93,7 +93,6 @@
     "cursor-workspace": true
   },
   "github.copilot.nextEditSuggestions.enabled": true,
-  "haskell.manageHLS": "GHCup",
   "python.defaultInterpreterPath": "/home/sigma/.local/bin/python3.14",
   "chat.tools.terminal.autoApprove": {
     "git ls-files gradle/wrapper/": {
@@ -103,7 +102,6 @@
     "jar": true,
     "javap": true
   },
-  "haskell.ghcupExecutablePath": "~/.ghcup/bin/ghcup",
   "github.copilot.chat.localeOverride": "ja",
 
 }
